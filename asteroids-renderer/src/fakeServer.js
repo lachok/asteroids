@@ -7,10 +7,10 @@ function getRandomIntBounded(max) {
 export default function fakeServer({WIDTH, HEIGHT}) {
     var that = this;
     this.subscribers = {};
-    this.FRAME_RATE = 10;
+    this.FRAME_RATE = 1;
     
     function generateAsteroid(id) {
-        return [id, getRandomIntBounded(WIDTH), getRandomIntBounded(HEIGHT), 10]
+        return [id, getRandomIntBounded(WIDTH), getRandomIntBounded(HEIGHT), Math.random() * 50]
     }
     
     function generateShip(id) {
