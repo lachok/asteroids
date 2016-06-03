@@ -16,8 +16,8 @@ export default class Server {
     
     onMessage(event) {
         let message = JSON.parse(event.data);
-        message.s = []
-        message.x = []
+        message.s = message.s || []
+        message.x = message.x || []
         
         if(this.subscribers['frame']) {
             this.subscribers.frame.forEach(callback => callback(message))
