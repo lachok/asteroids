@@ -2,9 +2,9 @@ import { fabric } from 'fabric'
 import * as shapes from './shapes'
 import * as utils from './utils'
 
-export default class Ship extends fabric.Polygon {
+export default class Ship {
     constructor({id, x, y, r, colour}, canvas) {
-        super(shapes.ship, {
+        this.ship = new fabric.Polygon(shapes.ship, {
             left: x,
             top: y,
             fill: 'transparent',
@@ -18,7 +18,7 @@ export default class Ship extends fabric.Polygon {
         
         this.id = id
         
-        canvas.add(this)
+        canvas.add(this.ship)
     }
     
     update({angle}, duration) {
@@ -26,7 +26,7 @@ export default class Ship extends fabric.Polygon {
             angle: Math.abs(angle)
         }
         
-        this.animate(animation, {
+        this.ship.animate(animation, {
             duration: duration,
             easing: utils.easing.linear
         })
