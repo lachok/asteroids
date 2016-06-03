@@ -64,7 +64,7 @@ export default class Renderer {
 const transformAsteroid = ([id, x, y, r]) => ({id, x, y, r})
 
 const transformShip = ([id, x, y, r, angle, colour]) => (
-    {id, x, y, r, angle: angle / (Math.PI / 180), colour}
+    {id, x, y, r, angle: (angle - Math.PI / 2) / (Math.PI / 180), colour}
 )
 
 const transformExplosion = ([x, y]) => ({x, y})

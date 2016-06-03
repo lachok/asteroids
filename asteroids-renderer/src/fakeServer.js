@@ -14,7 +14,7 @@ export default function fakeServer() {
     }
     
     function generateShip(id) {
-        return [id, getRandomIntBounded(800), getRandomIntBounded(600), 10, 1, '000000']
+        return [id, getRandomIntBounded(800), getRandomIntBounded(600), 10, 0, '000000']
     }
     
     function moveAsteroid([id, x, y, r]) {
