@@ -14,8 +14,12 @@ export default function fakeServer() {
         return [id, getRandomIntBounded(800), getRandomIntBounded(600), 5]
     }
     
-    function moveAsteroid(id, x, y, r) {
+    function moveAsteroid([id, x, y, r]) {
         return [id, x > 800 ? 0 : x + 3, y > 600 ? 0 : y + 3, r]
+    }
+    
+    function rotateShip([id, x, y, r, t, col]) {
+        return [id, x, y, r, t + Math.random() - 0.5, col]
     }
     
     this.state = {
@@ -33,15 +37,11 @@ export default function fakeServer() {
         x: []
     };
     
-    const asteroidsReducer = (state) => state.map(
-        (roid) => moveAsteroid(roid[0], roid[1], roid[2], roid[3])
-    )
-    
     const stateReducer = (state) => {
         return {
             ...state,
-            a: asteroidsReducer(state.a),
-            s: state.s,
+            a: state.a.map(moveAsteroid),
+            s: state.s.map(rotateShip),
             x: state.x
         }
     }

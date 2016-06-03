@@ -29,27 +29,27 @@ export default class Asteroid extends fabric.Polygon {
         canvas.add(this.text);
     }
     
-    update(coords, duration) {
+    update({x, y}, duration) {
         var animation = {
-            left: coords.x,
-            top: coords.y,
+            left: x,
+            top: y,
             angle: '+=30'
-        };
-        if(Math.abs(this.left - coords.x) > 100) {
-            delete animation.left;
-            this.set('left', coords.x);
         }
-        if(Math.abs(this.top - coords.y) > 100) {
+        if(Math.abs(this.left - x) > 100) {
+            delete animation.left;
+            this.set('left', x);
+        }
+        if(Math.abs(this.top - y) > 100) {
             delete animation.top;
-            this.set('top', coords.y);
+            this.set('top', y);
         }
         this.animate(animation, {
             duration: duration,
             easing: utils.easing.linear
-        });
+        })
         this.text.animate(
             { left: this.left - 15, top: this.top - 25 }, 
             { duration: 100, easing: utils.easing.linear }
-        );
+        )
     }
 }
