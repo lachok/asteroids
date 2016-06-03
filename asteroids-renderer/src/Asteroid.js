@@ -23,12 +23,12 @@ export default class Asteroid extends fabric.Polygon {
             top: y,
             fontSize: 16,
             fill: '#000000'
-        });
+        })
         
-        this.id = id;
+        this.id = id
         
-        canvas.add(this);
-        canvas.add(this.text);
+        canvas.add(this)
+        canvas.add(this.text)
     }
     
     update({x, y}, duration) {

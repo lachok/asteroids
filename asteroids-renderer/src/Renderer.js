@@ -1,6 +1,7 @@
 import { fabric } from 'fabric'
 import Asteroid from './Asteroid'
 import Ship from './Ship'
+import Explosion from './Explosion'
 
 export default class Renderer {
   
@@ -21,6 +22,10 @@ export default class Renderer {
         return theShip;
     }
     
+    addExplosion(splosion) {
+        return new Explosion(splosion, this.canvas)
+    }
+    
     updateAsteroids(asteroids) {
         asteroids.forEach((roid) => 
             this.getOrAddAsteroid(roid).update(roid, 1000 / this.FRAME_RATE)
@@ -30,11 +35,11 @@ export default class Renderer {
     updateShips(ships) {
         ships.forEach((ship) => 
             this.getOrAddShip(ship).update(ship, 1000 / this.FRAME_RATE)
-        );
+        )
     }
     
     updateExplosions(explosions) {
-        
+        explosions.forEach((splosion) => this.addExplosion(splosion).update(1000 / this.FRAME_RATE))
     }
     
     update(frame) {

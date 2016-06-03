@@ -10,10 +10,17 @@ export const asteroid = [
     { x: 2, y:-10},
     { x: -4, y:-10},
     { x: -4, y: -5}
-];
+]
 
 export const ship = [
     {x: -5, y: 4},
     {x: 0, y: -12},
     {x: 5, y:4}
-];
+]
+
+export const explosion = [
+    {x: -5, y: -5},
+    {x: 5, y: 4},
+    {x: 5, y: 5},
+    {x: -5, y: -5}
+]

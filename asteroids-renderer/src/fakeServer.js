@@ -4,7 +4,6 @@ function getRandomIntBounded(max) {
     return Math.floor(Math.random() * (max + 1));
 }
 
-
 export default function fakeServer() {
     var that = this;
     this.subscribers = {};
@@ -34,7 +33,7 @@ export default function fakeServer() {
         s: [
             [1, 250, 250, 10, 1, '000000']
         ],
-        x: []
+        x: [[300, 300]]
     };
     
     const stateReducer = (state) => {
@@ -54,13 +53,14 @@ export default function fakeServer() {
     }
     
     this.on = function(event, callback) {
-        that.subscribers[event] = callback;
+        that.subscribers[event] = that.subscribers[event] || [];
+        that.subscribers[event].push(callback);
     }
     
     this.start = function() {
         function render(frame) {
             if(that.subscribers['frame']) {
-                that.subscribers.frame(frame)
+                that.subscribers.frame.forEach(callback => callback(frame))
             }
             
             setTimeout(function() {
