@@ -70,7 +70,7 @@ export default function fakeServer({WIDTH, HEIGHT}) {
         that.subscribers[event].push(callback);
     }
     
-    this.start = function() {
+    this.connect = function() {
         function render(frame) {
             if(that.subscribers['frame']) {
                 that.subscribers.frame.forEach(callback => callback(frame))
