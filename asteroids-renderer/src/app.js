@@ -10,7 +10,7 @@ const serverDimensions = {WIDTH: 4000, HEIGHT: 2250}
 const clientDimensions = {WIDTH: 1920, HEIGHT: 1080}
 
 
-const renderer = new Renderer({...clientDimensions, FRAME_RATE: 1})
+const renderer = new Renderer({...clientDimensions, FRAME_RATE: 1000 / 15})
 //const server = new fakeServer(serverDimensions)
 const server = new Server()
 

@@ -9,7 +9,7 @@ export default class Asteroid extends fabric.Polygon {
             left: x,
             top: y,
             fill: 'transparent',
-            stroke: 'black',
+            stroke: 'white',
             selectable: false,
             originX: 'center',
             originY: 'center',

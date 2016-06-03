@@ -11,7 +11,7 @@ export default function Explosion({x, y}, canvas) {
           left: x,
           top: y,
           fill: 'transparent',
-          stroke: 'black',
+          stroke: 'white',
           selectable: false,
           originX: 'left',
           originY: 'top',

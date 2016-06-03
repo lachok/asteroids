@@ -15,6 +15,7 @@ export default class Renderer {
         
         this.canvas.setWidth(WIDTH)
         this.canvas.setHeight(HEIGHT)
+        this.canvas.setBackgroundColor('000000')
         this.canvas.calcOffset()
         
         document.addEventListener("keydown", (e) => {
