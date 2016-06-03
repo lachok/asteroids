@@ -28,7 +28,7 @@ export default function fakeServer() {
             generateAsteroid(6)
         ],
         s: [
-            [1, 250, 250, 5, 1, 'FFFFFF']
+            [1, 250, 250, 5, 1, '000000']
         ],
         x: []
     };

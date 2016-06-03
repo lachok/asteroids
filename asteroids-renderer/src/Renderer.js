@@ -9,27 +9,27 @@ export default class Renderer {
         this.canvas = new fabric.Canvas('c')
     }
     
-    getOrAddAsteroid(coords) {
-        let roid = this.state.asteroids[coords.id] || new Asteroid(coords.id, coords, this.canvas);
-        this.state.asteroids[roid.id] = roid;
-        return roid;
+    getOrAddAsteroid(roid) {
+        let theRoid = this.state.asteroids[roid.id] || new Asteroid(roid, this.canvas);
+        this.state.asteroids[theRoid.id] = theRoid;
+        return theRoid;
     }
     
-    getOrAddShip(coords) {
-        let ship = this.state.ships[coords.id] || new Ship(coords.id, coords, this.canvas);
-        this.state.ships[ship.id] = ship;
-        return ship;
+    getOrAddShip(ship) {
+        let theShip = this.state.ships[ship.id] || new Ship(ship, this.canvas);
+        this.state.ships[theShip.id] = theShip;
+        return theShip;
     }
     
     updateAsteroids(asteroids) {
-        asteroids.forEach((coords) => 
-            this.getOrAddAsteroid(coords).update(coords, 1000 / this.FRAME_RATE)
+        asteroids.forEach((roid) => 
+            this.getOrAddAsteroid(roid).update(roid, 1000 / this.FRAME_RATE)
         )
     }
     
     updateShips(ships) {
-        ships.forEach((coords) => 
-            this.getOrAddShip(coords).update(coords, 1000 / this.FRAME_RATE)
+        ships.forEach((ship) => 
+            this.getOrAddShip(ship).update(ship, 1000 / this.FRAME_RATE)
         );
     }
     
@@ -56,26 +56,11 @@ export default class Renderer {
     }
 }
 
-const transformAsteroid = (roid) => ({
-    id: roid[0],
-    x: roid[1],
-    y: roid[2],
-    r: roid[3]
-})
+const transformAsteroid = ([id, x, y, r]) => ({id, x, y, r})
 
-const transformShip = (ship) => ({
-    id: ship[0],
-    x: ship[1],
-    y: ship[2],
-    radius: ship[3],
-    angle: ship[4],
-    colour: ship[5]
-})
+const transformShip = ([id, x, y, r, angle, colour]) => ({id, x, y, r, angle, colour})
 
-const transformExplosion = (splosion) => ({
-    x: splosion[0],
-    y: splosion[1]
-})
+const transformExplosion = ([x, y]) => ({x, y})
 
 const transformFrame = (frame) => {
     return {

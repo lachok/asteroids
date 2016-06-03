@@ -3,11 +3,11 @@ import * as shapes from './shapes'
 import * as utils from './utils'
 
 export default class Asteroid extends fabric.Polygon {
-    constructor(id, coords, canvas) {
+    constructor({id, x, y, r},  canvas) {
         
         super(shapes.asteroid, {
-            left: coords.x,
-            top: coords.y,
+            left: x,
+            top: y,
             fill: 'transparent',
             stroke: 'black',
             selectable: false,
@@ -15,15 +15,15 @@ export default class Asteroid extends fabric.Polygon {
             originY: 'center'
         })
         
-        this.text = new fabric.Text(coords.id + '', {
+        this.text = new fabric.Text(id + '', {
             fontFamily: 'Courier New',
-            left: coords.x,
-            top: coords.y,
+            left: x,
+            top: y,
             fontSize: 16,
             fill: '#000000'
         });
         
-        this.id = coords.id;
+        this.id = id;
         
         canvas.add(this);
         canvas.add(this.text);
