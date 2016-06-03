@@ -3,7 +3,7 @@ import * as shapes from './shapes'
 import * as utils from './utils'
 
 export default class Ship extends fabric.Polygon {
-    constructor({id, x, y, colour}, canvas) {
+    constructor({id, x, y, r, colour}, canvas) {
         super(shapes.ship, {
             left: x,
             top: y,
@@ -11,7 +11,9 @@ export default class Ship extends fabric.Polygon {
             stroke: fabric.Color.fromHex(colour).toRgb(),
             selectable: false,
             originX: 'center',
-            originY: 'center'
+            originY: 'center',
+            scaleX: r / 10,
+            scaleY: r / 10
         })
         
         this.id = id

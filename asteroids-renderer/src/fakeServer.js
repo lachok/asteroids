@@ -11,7 +11,7 @@ export default function fakeServer() {
     this.FRAME_RATE = 10;
     
     function generateAsteroid(id) {
-        return [id, getRandomIntBounded(800), getRandomIntBounded(600), 5]
+        return [id, getRandomIntBounded(800), getRandomIntBounded(600), 10]
     }
     
     function moveAsteroid([id, x, y, r]) {
@@ -32,7 +32,7 @@ export default function fakeServer() {
             generateAsteroid(6)
         ],
         s: [
-            [1, 250, 250, 5, 1, '000000']
+            [1, 250, 250, 10, 1, '000000']
         ],
         x: []
     };

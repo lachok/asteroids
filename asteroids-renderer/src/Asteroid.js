@@ -12,7 +12,9 @@ export default class Asteroid extends fabric.Polygon {
             stroke: 'black',
             selectable: false,
             originX: 'center',
-            originY: 'center'
+            originY: 'center',
+            scaleX: r / 10,
+            scaleY: r / 10
         })
         
         this.text = new fabric.Text(id + '', {
