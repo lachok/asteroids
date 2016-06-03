@@ -6,7 +6,7 @@ export default class FpsCounter extends fabric.Text {
         super('FPS: 0', {
             fontFamily: 'Arial',
             fontSize: 12,
-            fill: 'black',
+            fill: 'white',
             fontWeight: 'bold',
             left: 5,
             top: 5,

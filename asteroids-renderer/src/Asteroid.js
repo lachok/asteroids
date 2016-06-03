@@ -22,7 +22,7 @@ export default class Asteroid extends fabric.Polygon {
             left: x,
             top: y,
             fontSize: 16,
-            fill: '#000000'
+            fill: 'white'
         })
         
         this.id = id
