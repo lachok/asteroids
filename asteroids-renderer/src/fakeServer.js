@@ -17,6 +17,10 @@ export default function fakeServer({WIDTH, HEIGHT}) {
         return [id, getRandomIntBounded(WIDTH), getRandomIntBounded(HEIGHT), 10, 0, '000000']
     }
     
+    function generateExplosion() {
+        return [getRandomIntBounded(WIDTH), getRandomIntBounded(HEIGHT)]
+    }
+    
     function moveAsteroid([id, x, y, r]) {
         return [id, x > WIDTH ? 0 : x + 3, y > HEIGHT ? 0 : y + 3, r]
     }
@@ -42,7 +46,7 @@ export default function fakeServer({WIDTH, HEIGHT}) {
             generateShip(5),
             generateShip(6)
         ],
-        x: [[300, 300]]
+        x: []
     };
     
     const stateReducer = (state) => {
@@ -50,7 +54,7 @@ export default function fakeServer({WIDTH, HEIGHT}) {
             ...state,
             a: state.a.map(moveAsteroid),
             s: state.s.map(rotateShip),
-            x: state.x
+            x: [generateExplosion(), generateExplosion()]
         }
     }
     

@@ -49,10 +49,6 @@ export default class Renderer {
         return theShip;
     }
     
-    addExplosion(splosion) {
-        return new Explosion(splosion, this.canvas)
-    }
-    
     updateAsteroids(asteroids) {
         asteroids.forEach((roid) => 
             this.getOrAddAsteroid(roid).update(roid, 1000 / this.FRAME_RATE)
@@ -66,7 +62,7 @@ export default class Renderer {
     }
     
     updateExplosions(explosions) {
-        explosions.forEach((splosion) => this.addExplosion(splosion).update(1000 / this.FRAME_RATE))
+        explosions.forEach((splosion) => new Explosion(splosion, this.canvas))
     }
     
     update(frame) {
