@@ -2,12 +2,16 @@ import { fabric } from 'fabric'
 import Asteroid from './Asteroid'
 import Ship from './Ship'
 import Explosion from './Explosion'
+import FpsCounter from './FpsCounter'
 
 export default class Renderer {
   
-    constructor() {
+    constructor({FRAME_RATE}) {
+        this.FRAME_RATE = FRAME_RATE
         this.state = { asteroids: {}, ships: {} }
         this.canvas = new fabric.Canvas('c')
+        this.canvas.renderOnAddRemove = false
+        this.canvas.stateful = false
     }
     
     getOrAddAsteroid(roid) {
@@ -48,31 +52,16 @@ export default class Renderer {
         this.updateExplosions(frame.explosions)
     }
         
-    start(server) {
-        this.FRAME_RATE = server.FRAME_RATE
-        server.on('frame', (frame) => this.update(transformFrame(frame)))
+    start() {        
+        let fpsCounter = new FpsCounter(this.canvas)
         
         const step = (timestamp) => {
+            fpsCounter.update()
+            
+            fabric.util.requestAnimFrame(step, this.canvas.getElement())
             this.canvas.renderAll()
-            window.requestAnimationFrame(step)
         }
 
-        window.requestAnimationFrame(step)
-    }
-}
-
-const transformAsteroid = ([id, x, y, r]) => ({id, x, y, r})
-
-const transformShip = ([id, x, y, r, angle, colour]) => (
-    {id, x, y, r, angle: (angle - Math.PI / 2) / (Math.PI / 180), colour}
-)
-
-const transformExplosion = ([x, y]) => ({x, y})
-
-const transformFrame = (frame) => {
-    return {
-        asteroids: frame.a.map(transformAsteroid),
-        ships: frame.s.map(transformShip),
-        explosions: frame.x.map(transformExplosion)
+        step()
     }
 }
