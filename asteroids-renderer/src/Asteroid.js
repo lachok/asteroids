@@ -35,7 +35,7 @@ export default class Asteroid extends fabric.Polygon {
         let animation = {
             left: x,
             top: y,
-            angle: '+=20'
+            angle: '+=' + (duration / 5)
         }
         
         let textAnimation = { left: this.left - 15, top: this.top - 25 }
