@@ -4,21 +4,21 @@ function getRandomIntBounded(max) {
     return Math.floor(Math.random() * (max + 1));
 }
 
-export default function fakeServer() {
+export default function fakeServer({WIDTH, HEIGHT}) {
     var that = this;
     this.subscribers = {};
     this.FRAME_RATE = 10;
     
     function generateAsteroid(id) {
-        return [id, getRandomIntBounded(800), getRandomIntBounded(600), 10]
+        return [id, getRandomIntBounded(WIDTH), getRandomIntBounded(HEIGHT), 10]
     }
     
     function generateShip(id) {
-        return [id, getRandomIntBounded(800), getRandomIntBounded(600), 10, 0, '000000']
+        return [id, getRandomIntBounded(WIDTH), getRandomIntBounded(HEIGHT), 10, 0, '000000']
     }
     
     function moveAsteroid([id, x, y, r]) {
-        return [id, x > 800 ? 0 : x + 3, y > 600 ? 0 : y + 3, r]
+        return [id, x > WIDTH ? 0 : x + 3, y > HEIGHT ? 0 : y + 3, r]
     }
     
     function rotateShip([id, x, y, r, t, col]) {

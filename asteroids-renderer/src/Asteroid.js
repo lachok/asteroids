@@ -32,26 +32,24 @@ export default class Asteroid extends fabric.Polygon {
     }
     
     update({x, y}, duration) {
-        var animation = {
+        let animation = {
             left: x,
             top: y,
-            angle: '+=30'
+            angle: '+=20'
         }
+        
+        let textAnimation = { left: this.left - 15, top: this.top - 25 }
+        let animationSettings = { duration: duration, easing: utils.easing.linear }
+        
         if(Math.abs(this.left - x) > 100) {
-            delete animation.left;
-            this.set('left', x);
+            this.set('left', x)
+            this.text.set('left', x)
         }
         if(Math.abs(this.top - y) > 100) {
-            delete animation.top;
-            this.set('top', y);
+            this.set('top', y)
+            this.text.set('top', y)
         }
-        this.animate(animation, {
-            duration: duration,
-            easing: utils.easing.linear
-        })
-        this.text.animate(
-            { left: this.left - 15, top: this.top - 25 }, 
-            { duration: 100, easing: utils.easing.linear }
-        )
+        this.animate(animation, animationSettings)
+        this.text.animate(textAnimation, animationSettings)
     }
 }

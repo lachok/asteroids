@@ -6,12 +6,35 @@ import FpsCounter from './FpsCounter'
 
 export default class Renderer {
   
-    constructor({FRAME_RATE}) {
+    constructor({FRAME_RATE, WIDTH, HEIGHT}) {
         this.FRAME_RATE = FRAME_RATE
         this.state = { asteroids: {}, ships: {} }
         this.canvas = new fabric.Canvas('c')
         this.canvas.renderOnAddRemove = false
         this.canvas.stateful = false
+        
+        this.canvas.setWidth(WIDTH)
+        this.canvas.setHeight(HEIGHT)
+        this.canvas.calcOffset()
+        
+        document.addEventListener("keydown", (e) => {
+            if (e.keyCode == 13) {
+                this.goFullscreen()
+            }
+        }, false);
+    }
+    
+    goFullscreen() {
+        var canvas = this.canvas.getSelectionElement().parentNode;
+        if(canvas.requestFullScreen) {
+            canvas.requestFullScreen();
+        }
+        else if(canvas.webkitRequestFullScreen) {
+            canvas.webkitRequestFullScreen();
+        }
+        else if(canvas.mozRequestFullScreen) {
+            canvas.mozRequestFullScreen();
+        }
     }
     
     getOrAddAsteroid(roid) {

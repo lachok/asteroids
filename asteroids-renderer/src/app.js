@@ -5,10 +5,18 @@ import transformFrame from './transformFrame'
 console.log('fabric', fabric)
 console.log('window.fabric', window.fabric);
 
-var server = new fakeServer()
-var renderer = new Renderer({FRAME_RATE: server.FRAME_RATE})
+const serverDimensions = {WIDTH: 4000, HEIGHT: 3400}
+const clientDimensions = {WIDTH: 1920, HEIGHT: 1080}
+
+const server = new fakeServer(serverDimensions)
+const renderer = new Renderer({...clientDimensions, FRAME_RATE: server.FRAME_RATE})
+
+const transformRatio = {
+    WIDTH: serverDimensions.WIDTH / clientDimensions.WIDTH,
+    HEIGHT: serverDimensions.HEIGHT / clientDimensions.HEIGHT
+}
+    
 
 server.start()
 renderer.start()
-server.on('frame', (frame) => renderer.update(transformFrame(frame)))
-
+server.on('frame', (frame) => renderer.update(transformFrame(frame, transformRatio)))
