@@ -45,7 +45,7 @@ export default class Renderer {
         
     start(server) {
         this.FRAME_RATE = server.FRAME_RATE
-        server.on('frame', (frame) => this.update(frame))
+        server.on('frame', (frame) => this.update(transformFrame(frame)))
         
         const step = (timestamp) => {
             this.canvas.renderAll()
@@ -53,5 +53,34 @@ export default class Renderer {
         }
 
         window.requestAnimationFrame(step)
+    }
+}
+
+const transformAsteroid = (roid) => ({
+    id: roid[0],
+    x: roid[1],
+    y: roid[2],
+    r: roid[3]
+})
+
+const transformShip = (ship) => ({
+    id: ship[0],
+    x: ship[1],
+    y: ship[2],
+    radius: ship[3],
+    angle: ship[4],
+    colour: ship[5]
+})
+
+const transformExplosion = (splosion) => ({
+    x: splosion[0],
+    y: splosion[1]
+})
+
+const transformFrame = (frame) => {
+    return {
+        asteroids: frame.a.map(transformAsteroid),
+        ships: frame.s.map(transformShip),
+        explosions: frame.x.map(transformExplosion)
     }
 }

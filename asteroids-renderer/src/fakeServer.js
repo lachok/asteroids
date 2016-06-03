@@ -11,23 +11,15 @@ export default function fakeServer() {
     this.FRAME_RATE = 10;
     
     function generateAsteroid(id) {
-        return {
-            x: getRandomIntBounded(800),
-            y: getRandomIntBounded(600),
-            id: id
-        }
+        return [id, getRandomIntBounded(800), getRandomIntBounded(600), 5]
     }
     
-    function moveAsteroid(x, y, id) {
-        return {
-            x: x > 800 ? 0 : x + 3,
-            y: y > 600 ? 0 : y + 3,
-            id: id
-        }
+    function moveAsteroid(id, x, y, r) {
+        return [id, x > 800 ? 0 : x + 3, y > 600 ? 0 : y + 3, r]
     }
     
     this.state = {
-        asteroids: [
+        a: [
             generateAsteroid(1),
             generateAsteroid(2),
             generateAsteroid(3),
@@ -35,19 +27,22 @@ export default function fakeServer() {
             generateAsteroid(5),
             generateAsteroid(6)
         ],
-        explosions: [],
-        ships: [{id:1, x: 250, y:250}]
+        s: [
+            [1, 250, 250, 5, 1, 'FFFFFF']
+        ],
+        x: []
     };
     
     const asteroidsReducer = (state) => state.map(
-        (roid) => moveAsteroid(roid.x, roid.y, roid.id)
+        (roid) => moveAsteroid(roid[0], roid[1], roid[2], roid[3])
     )
     
     const stateReducer = (state) => {
         return {
             ...state,
-            asteroids: asteroidsReducer(state.asteroids),
-            ships: state.ships
+            a: asteroidsReducer(state.a),
+            s: state.s,
+            x: state.x
         }
     }
     
