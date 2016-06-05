@@ -1,9 +1,9 @@
 import { fabric } from 'fabric'
 
-export default class FpsCounter extends fabric.Text {
+export default class FpsCounter {
     
     constructor(canvas) {
-        super('FPS: 0', {
+        this.text = new fabric.Text('FPS: 0', {
             fontFamily: 'Arial',
             fontSize: 12,
             fill: 'white',
@@ -13,7 +13,7 @@ export default class FpsCounter extends fabric.Text {
             selectable: false
         })
         
-        canvas.add(this)
+        canvas.add(this.text)
         
         this.frames = 0
         this.startTime = Date.now()
@@ -29,7 +29,7 @@ export default class FpsCounter extends fabric.Text {
             this.prevTime = time
             this.frames = 0
 
-            this.setText("FPS: " + fps)
+            this.text.setText("FPS: " + fps)
         }
     }
 }
