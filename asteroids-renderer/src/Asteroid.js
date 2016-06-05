@@ -5,16 +5,14 @@ import * as utils from './utils'
 export default class Asteroid extends fabric.Polygon {
     constructor({id, x, y, r},  canvas) {
         
-        super(shapes.asteroid, {
+        super(shapes.asteroid(r), {
             left: x,
             top: y,
             fill: 'transparent',
             stroke: 'white',
             selectable: false,
             originX: 'center',
-            originY: 'center',
-            scaleX: r / 10,
-            scaleY: r / 10
+            originY: 'center'
         })
         
         this.text = new fabric.Text(id + '', {

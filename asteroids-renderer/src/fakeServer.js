@@ -7,14 +7,14 @@ function getRandomIntBounded(max) {
 export default function fakeServer({WIDTH, HEIGHT}) {
     var that = this;
     this.subscribers = {};
-    this.FRAME_RATE = 1;
+    this.FRAME_RATE = 10;
     
     function generateAsteroid(id) {
         return [id, getRandomIntBounded(WIDTH), getRandomIntBounded(HEIGHT), Math.random() * 50]
     }
     
     function generateShip(id) {
-        return [id, getRandomIntBounded(WIDTH), getRandomIntBounded(HEIGHT), 10, 0, '000000']
+        return [id, getRandomIntBounded(WIDTH), getRandomIntBounded(HEIGHT), 20, 0, 'ffffff']
     }
     
     function generateExplosion() {
@@ -54,7 +54,7 @@ export default function fakeServer({WIDTH, HEIGHT}) {
             ...state,
             a: state.a.map(moveAsteroid),
             s: state.s.map(rotateShip),
-            x: [generateExplosion(), generateExplosion()]
+            x: [generateExplosion()]
         }
     }
     

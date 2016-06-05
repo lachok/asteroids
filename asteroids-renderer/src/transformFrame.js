@@ -15,7 +15,7 @@ const transformShip = ([id, x, y, r, angle, colour], ratio) => ({
     angle: (angle - Math.PI / 2) / (Math.PI / 180), colour}
 )
 
-const transformExplosion = ([x, y]) => ({x, y})
+const transformExplosion = ([x, y], ratio) => ({x: x / ratio.WIDTH, y: y / ratio.HEIGHT})
 
 export default function transformFrame(frame, ratio) {
     return {
