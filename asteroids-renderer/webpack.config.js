@@ -28,20 +28,6 @@ module.exports = {
     },
     devtool: 'inline-source-map',
     devServer: {
-        proxy: {
-            '/api/*': {
-                target: 'http://localhost:9100/',
-                secure: false
-            },
-            '/admin/externalquote/api/*': {
-                target: 'http://localhost:9100/',
-                secure: false
-            },
-            '/admin/externalquote': {
-                target: 'http://localhost:9100/',
-                secure: false
-            }
-        },
         contentBase: PATHS.bin,
 
         historyApiFallback: false,
