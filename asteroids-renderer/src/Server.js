@@ -15,6 +15,7 @@ export default class Server {
     }
     
     onMessage(event) {
+        //console.log('WebSocket: Message', event.data)
         let message = JSON.parse(event.data);
         message.s = message.s || []
         message.x = message.x || []
