@@ -1,10 +1,17 @@
 Asteroids Renderer
 ==================
 
-Uses websockets to connect to an asteroids game server and renders the game state.
+Uses websockets to connect to [an asteroids game server](https://github.com/devstopfix/asteroids-server) and renders the game state on html canvas with fabric.js.
 
-Supported State Protocol
-------------------------
+Usage
+-----
+```
+npm install
+npm start
+```
+
+Supported Game State Protocol
+-----------------------------
 ```
 {
   a:   [    [ id, x, y, r], ... ]           // List of asteroids
