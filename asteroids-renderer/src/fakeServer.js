@@ -9,12 +9,14 @@ export default function fakeServer({WIDTH, HEIGHT}) {
     this.subscribers = {};
     this.FRAME_RATE = 10;
     
+    const randomHexColour = () => Math.floor(Math.random()*16777215).toString(16) 
+    
     function generateAsteroid(id) {
         return [id, getRandomIntBounded(WIDTH), getRandomIntBounded(HEIGHT), Math.random() * 50]
     }
     
     function generateShip(id) {
-        return [id, getRandomIntBounded(WIDTH), getRandomIntBounded(HEIGHT), 20, 0, 'ffffff']
+        return [id, getRandomIntBounded(WIDTH), getRandomIntBounded(HEIGHT), 20, 0, randomHexColour()]
     }
     
     function generateExplosion() {
@@ -39,12 +41,12 @@ export default function fakeServer({WIDTH, HEIGHT}) {
             generateAsteroid(6)
         ],
         s: [
-            generateShip(1),
-            generateShip(2),
-            generateShip(3),
-            generateShip(4),
-            generateShip(5),
-            generateShip(6)
+            generateShip('AAA'),
+            generateShip('BBB'),
+            generateShip('CCC'),
+            generateShip('DDD'),
+            generateShip('EEE'),
+            generateShip('FFF')
         ],
         x: []
     };
@@ -61,7 +63,7 @@ export default function fakeServer({WIDTH, HEIGHT}) {
     this.getNextFrame = function () {
         this.state = stateReducer(this.state)
         
-        //console.table(this.state.asteroids);
+        //console.table(this.state);
         return this.state
     }
     
