@@ -14,7 +14,7 @@ const renderer = new Renderer({...clientDimensions, FRAME_RATE: 24})
 //const server = new fakeServer(serverDimensions)
 const server = new Server()
 
-server.on('frame', (frame) => renderer.update(transformFrame(frame, transformRatio)))
+server.on('frame', (frame) => renderer.update(transformFrame(frame, transformRatio, serverDimensions)))
 
 const transformRatio = {
     WIDTH: serverDimensions.WIDTH / clientDimensions.WIDTH,

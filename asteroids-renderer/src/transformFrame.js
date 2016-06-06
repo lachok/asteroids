@@ -1,30 +1,36 @@
 
 
-const transformAsteroid = ([id, x, y, r], ratio) => ({
-    id, 
-    x: x / ratio.WIDTH, 
-    y: y / ratio.HEIGHT, 
-    r: r / ratio.WIDTH
-})
+export default function transformFrame(frame, ratio, serverDimmensions) {
+    const transformAsteroid = ([id, x, y, r]) => ({
+        id, 
+        x: x / ratio.WIDTH, 
+        y: y / ratio.HEIGHT, 
+        r: r / ratio.WIDTH
+    })
 
-const transformShip = ([id, x, y, r, angle, colour], ratio) => ({
-    id,
-    x: x / ratio.WIDTH, 
-    y: y / ratio.HEIGHT, 
-    r: r / ratio.WIDTH,
-    angle: (angle - Math.PI / 2) / (Math.PI / 180), colour}
-)
+    const transformShip = ([id, x, y, r, angle, colour]) => ({
+        id,
+        x: x / ratio.WIDTH, 
+        y: y / ratio.HEIGHT, 
+        r: r / ratio.WIDTH,
+        angle: (angle - Math.PI / 2) / (Math.PI / 180), colour}
+    )
 
-const transformExplosion = ([x, y], ratio) => ({x: x / ratio.WIDTH, y: y / ratio.HEIGHT})
+    const transformExplosion = ([x, y]) => ({
+        x: x / ratio.WIDTH, 
+        y: y / ratio.HEIGHT
+    })
 
-const transformBullet = ([id, x, y], ratio) => ({id, x: x / ratio.WIDTH, y: y / ratio.HEIGHT})
+    const transformBullet = ([id, x, y]) => ({
+        id, 
+        x: x / ratio.WIDTH, 
+        y: y / ratio.HEIGHT
+    })
 
-export default function transformFrame(frame, ratio) {
-    //console.log(frame)
     return {
-        asteroids: frame.a.map((a) => transformAsteroid(a, ratio)),
-        ships: frame.s.map((s) => transformShip(s, ratio)),
-        explosions: frame.x.map((x) => transformExplosion(x, ratio)),
-        bullets: frame.b.map(b => transformBullet(b, ratio))
+        asteroids: frame.a.map((a) => transformAsteroid(a)),
+        ships: frame.s.map((s) => transformShip(s)),
+        explosions: frame.x.map((x) => transformExplosion(x)),
+        bullets: frame.b.map(b => transformBullet(b))
     }
 }
