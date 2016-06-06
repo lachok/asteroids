@@ -17,10 +17,14 @@ const transformShip = ([id, x, y, r, angle, colour], ratio) => ({
 
 const transformExplosion = ([x, y], ratio) => ({x: x / ratio.WIDTH, y: y / ratio.HEIGHT})
 
+const transformBullet = ([id, x, y], ratio) => ({id, x: x / ratio.WIDTH, y: y / ratio.HEIGHT})
+
 export default function transformFrame(frame, ratio) {
+    //console.log(frame)
     return {
         asteroids: frame.a.map((a) => transformAsteroid(a, ratio)),
         ships: frame.s.map((s) => transformShip(s, ratio)),
-        explosions: frame.x.map((x) => transformExplosion(x, ratio))
+        explosions: frame.x.map((x) => transformExplosion(x, ratio)),
+        bullets: frame.b.map(b => transformBullet(b, ratio))
     }
 }

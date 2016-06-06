@@ -11,8 +11,8 @@ const clientDimensions = {WIDTH: 1600, HEIGHT: 1050}
 
 
 const renderer = new Renderer({...clientDimensions, FRAME_RATE: 24})
-const server = new fakeServer(serverDimensions)
-//const server = new Server()
+//const server = new fakeServer(serverDimensions)
+const server = new Server()
 
 server.on('frame', (frame) => renderer.update(transformFrame(frame, transformRatio)))
 

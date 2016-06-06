@@ -2,6 +2,7 @@ import { fabric } from 'fabric'
 import Asteroid from './Asteroid'
 import Ship from './Ship'
 import Explosion from './Explosion'
+import Bullet from './Bullet'
 import FpsCounter from './FpsCounter'
 
 export default class Renderer {
@@ -66,10 +67,16 @@ export default class Renderer {
         explosions.forEach((splosion) => new Explosion(splosion, this.canvas))
     }
     
+    updateBullets(bullets) {
+        bullets.forEach(bullet => new Bullet(bullet, this.canvas))
+    }
+    
     update(frame) {
+        //console.log(frame);
         this.updateAsteroids(frame.asteroids)
         this.updateShips(frame.ships)
         this.updateExplosions(frame.explosions)
+        this.updateBullets(frame.bullets)
     }
         
     start() {        
