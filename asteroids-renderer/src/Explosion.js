@@ -7,11 +7,11 @@ export default function Explosion({x, y}, canvas) {
     for (var i = 0; i < 10; i++) {
       // var x1 = Math.cos(rad)// * Math.random()
       // var y1 = Math.sin(rad)// * Math.random()
-      var line = new fabric.Line([-1, -1, 1, 1], {
+      var line = new fabric.Line([-2, -2, 2, 2], {
           left: x,
           top: y,
           fill: 'transparent',
-          stroke: 'white',
+          stroke: 'yellow',
           selectable: false,
           originX: 'left',
           originY: 'top',

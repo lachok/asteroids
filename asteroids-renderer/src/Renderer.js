@@ -9,7 +9,7 @@ export default class Renderer {
   
     constructor({FRAME_RATE, WIDTH, HEIGHT}) {
         this.FRAME_RATE = FRAME_RATE
-        this.state = { asteroids: {}, ships: {} }
+        this.state = { asteroids: {}, ships: {}, bullets: {} }
         this.canvas = new fabric.Canvas('c')
         this.canvas.renderOnAddRemove = false
         this.canvas.stateful = false
@@ -51,6 +51,12 @@ export default class Renderer {
         return theShip;
     }
     
+    getOrAddBullet(bullet) {
+        let theBullet = this.state.bullets[bullet.id] || new Bullet(bullet, this.canvas);
+        this.state.bullets[theBullet.id] = theBullet;
+        return theBullet;
+    }
+    
     updateAsteroids(asteroids) {
         asteroids.forEach((roid) => 
             this.getOrAddAsteroid(roid).update(roid, 1000 / this.FRAME_RATE)
@@ -68,7 +74,14 @@ export default class Renderer {
     }
     
     updateBullets(bullets) {
-        bullets.forEach(bullet => new Bullet(bullet, this.canvas))
+        let deadBulletIds = Object.keys(this.state.bullets).filter((existingId) => {
+            return !bullets.some(({id}) => id === existingId )
+        })
+        deadBulletIds.forEach(id => {
+            this.state.bullets[id].remove()
+            delete this.state.bullets[id]
+        })
+        bullets.forEach(bullet => this.getOrAddBullet(bullet).update(bullet))
     }
     
     update(frame) {

@@ -7,7 +7,7 @@ import transformFrame from './transformFrame'
 // console.log('window.fabric', window.fabric);
 
 const serverDimensions = {WIDTH: 4000, HEIGHT: 2250}
-const clientDimensions = {WIDTH: 1600, HEIGHT: 1050}
+const clientDimensions = {WIDTH: 1920, HEIGHT: 1080}
 
 
 const renderer = new Renderer({...clientDimensions, FRAME_RATE: 24})
