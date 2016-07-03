@@ -1,7 +1,7 @@
-Asteroids Renderer
+Asteroids Client
 ==================
 
-Uses websockets to connect to [an asteroids game server](https://github.com/devstopfix/asteroids-server) and renders the game state on html canvas with fabric.js.
+Uses websockets to connect to [an asteroids game server](https://github.com/devstopfix/asteroids-server).
 
 Usage
 -----
@@ -9,6 +9,8 @@ Usage
 npm install
 npm start
 ```
+
+Implement your client in `./src/app.js`. The server state is received as a `frame` event. The state protocol is described below. The client applies a minimal transformation (`./src/transformFrame.js`) which can be improved. 
 
 Supported Game State Protocol
 -----------------------------
@@ -42,20 +44,15 @@ t	float	angle theta clockwise from x-axis in radians (0.. 2π)
 col	string	color - six char hex code (e.g. FFFFFF for white)
 ```
 
-Bullet Definition		Design is determined by GUI. Should be point-like
+Bullet Definition
 (not implemented)
 ```					
 id	integer	
 x	float	metres from bottom left
 y	float	metres from bottom left
 ```					
-eXplosion Definition		Duration and design is determined by GUI
+eXplosion Definition
 ```					
 x	float	metres from bottom left
 y	float	metres from bottom left
 ```					
-Frame
-```					
-n	integer	Frame can be ignored if out of order (e.g. ignore frame with smaller number than last)
-        Might not be sequential though - just increasing!
-```
