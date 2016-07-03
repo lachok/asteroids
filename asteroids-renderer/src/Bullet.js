@@ -45,6 +45,6 @@ export default class Bullet {
         let self = this;
         setTimeout(function() {
             self.canvas.remove(self.bullet)
-        }, 100)
+        }, 50)
     }
 }

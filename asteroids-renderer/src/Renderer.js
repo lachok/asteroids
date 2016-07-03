@@ -90,14 +90,16 @@ export default class Renderer {
     }
     
     update(frame) {
-        //console.log(frame);
-        this.updateAsteroids(frame.asteroids)
-        this.updateShips(frame.ships)
-        this.updateExplosions(frame.explosions)
-        this.updateBullets(frame.bullets)
+        if(!this.paused) {
+            //console.log(frame);
+            this.updateAsteroids(frame.asteroids)
+            this.updateShips(frame.ships)
+            this.updateExplosions(frame.explosions)
+            this.updateBullets(frame.bullets)
+        }
     }
         
-    start() {        
+    start() {
         let fpsCounter = new FpsCounter(this.canvas)
         
         const step = (timestamp) => {
@@ -108,5 +110,13 @@ export default class Renderer {
         }
 
         step()
+    }
+
+    pause() {
+        this.paused = true;
+    }
+
+    resume() {
+        this.paused = false;
     }
 }

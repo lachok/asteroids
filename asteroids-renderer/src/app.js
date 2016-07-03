@@ -21,5 +21,14 @@ const transformRatio = {
     HEIGHT: serverDimensions.HEIGHT / clientDimensions.HEIGHT
 }
 
+window.onblur = () => {
+    console.log('window.onblur: pausing renderer')
+    renderer.pause();
+}
+window.onfocus = () => {
+    console.log('window.onfocus: resuming renderer')
+    renderer.resume();
+}
+
 renderer.start()
 server.connect()
