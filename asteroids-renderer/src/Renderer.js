@@ -58,6 +58,14 @@ export default class Renderer {
     }
     
     updateAsteroids(asteroids) {
+        let deadAsteroidIds = Object.keys(this.state.asteroids).filter((existingId) => {
+            return !asteroids.some(({id}) => id == existingId )
+        })
+        deadAsteroidIds.forEach(id => {
+            this.state.asteroids[id].remove()
+            delete this.state.asteroids[id]
+        })
+
         asteroids.forEach((roid) => 
             this.getOrAddAsteroid(roid).update(roid, 1000 / this.FRAME_RATE)
         )
@@ -74,10 +82,7 @@ export default class Renderer {
     }
     
     updateBullets(bullets) {
-        let deadBulletIds = Object.keys(this.state.bullets).filter((existingId) => {
-            return !bullets.some(({id}) => id === existingId )
-        })
-        deadBulletIds.forEach(id => {
+        Object.keys(this.state.bullets).forEach(id => {
             this.state.bullets[id].remove()
             delete this.state.bullets[id]
         })

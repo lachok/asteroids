@@ -30,12 +30,15 @@ export default class Ship {
         canvas.add(this.text)
     }
     
-    update({angle}, duration) {
+    update({x, y, r,  angle}, duration) {
+        this.ship.set('angle', angle)
+        this.ship.set('left', x)
+        this.ship.set('top', y)
+        this.text.set('left', x)
+        this.text.set('top', y + r)
         var animation = { angle: Math.abs(angle) }
         let animationSettings = { duration: duration, easing: utils.easing.linear }
         
-        this.ship.animate(animation, animationSettings)
-        //this.text.animate(animation, animationSettings)
-        
+        this.ship.animate(animation, animationSettings)        
     }
 }

@@ -5,14 +5,16 @@ import * as utils from './utils'
 
 export default class Bullet {
     constructor({id, x, y}, canvas) {
-        var bullet = new fabric.Line([-2, -2, 2, 2], {
+        var bullet = new fabric.Circle({
+            radius: 1,
             left: x,
             top: y,
             fill: 'transparent',
             stroke: 'white',
             selectable: false,
             originX: 'left',
-            originY: 'top'
+            originY: 'top',
+            opacity: 0.5
         })
         
         canvas.add(bullet)
@@ -21,10 +23,11 @@ export default class Bullet {
         this.bullet = bullet
     }
     
-    update({x, y}, duration) {
+    update({x, y}, duration = 50) {
         let animation = {
             left: x,
-            top: y
+            top: y,
+            opacity: 0.1
         }
         
         let animationSettings = { duration: duration, easing: utils.easing.linear }
@@ -39,6 +42,9 @@ export default class Bullet {
     }
     
     remove() {
-        this.canvas.remove(this.bullet)
+        let self = this;
+        setTimeout(function() {
+            self.canvas.remove(self.bullet)
+        }, 100)
     }
 }

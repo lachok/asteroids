@@ -15,18 +15,19 @@ export default class Asteroid {
             originY: 'center'
         })
         
-        this.text = new fabric.Text(id + '', {
-            fontFamily: 'Courier New',
-            left: x,
-            top: y,
-            fontSize: 16,
-            fill: 'white'
-        })
+        // this.text = new fabric.Text(id + '', {
+        //     fontFamily: 'Courier New',
+        //     left: x,
+        //     top: y,
+        //     fontSize: 16,
+        //     fill: 'white'
+        // })
         
         this.id = id
+        this.canvas = canvas
         
-        canvas.add(this.roid)
-        canvas.add(this.text)
+        this.canvas.add(this.roid)
+        //this.canvas.add(this.text)
     }
     
     update({x, y}, duration) {
@@ -36,18 +37,23 @@ export default class Asteroid {
             angle: '+=' + (duration / 5)
         }
         
-        let textAnimation = { left: this.roid.left - 15, top: this.roid.top - 25 }
+        //let textAnimation = { left: this.roid.left - 15, top: this.roid.top - 25 }
         let animationSettings = { duration: duration, easing: utils.easing.linear }
         
         if(Math.abs(this.roid.left - x) > 100) {
             this.roid.set('left', x)
-            this.text.set('left', x)
+            //this.text.set('left', x)
         }
         if(Math.abs(this.top - y) > 100) {
             this.roid.set('top', y)
-            this.text.set('top', y)
+            //this.text.set('top', y)
         }
         this.roid.animate(animation, animationSettings)
-        this.text.animate(textAnimation, animationSettings)
+        //this.text.animate(textAnimation, animationSettings)
+    }
+    
+    remove() {
+        this.canvas.remove(this.roid)
+        //this.canvas.remove(this.text)
     }
 }
