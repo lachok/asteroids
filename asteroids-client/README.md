@@ -12,7 +12,7 @@ npm start
 
 Implementation Ideas
 --------------------
-Not a lot can be done in 1 hours, but here are some ideas
+Not a lot can be done in 1 hour, but here are some ideas:
  - do not shoot others until they shoot at you
  - shoot the nearest asteroid
  - shoot the farthest asteroid
