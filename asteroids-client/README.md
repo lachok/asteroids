@@ -45,7 +45,6 @@ col	string	color - six char hex code (e.g. FFFFFF for white)
 ```
 
 Bullet Definition
-(not implemented)
 ```					
 id	integer	
 x	float	metres from bottom left
