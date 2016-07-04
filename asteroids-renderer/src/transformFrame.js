@@ -13,8 +13,9 @@ export default function transformFrame(frame, ratio, serverDimmensions) {
         x: x / ratio.WIDTH, 
         y: (serverDimmensions.HEIGHT - y) / ratio.HEIGHT, 
         r: r / ratio.WIDTH,
-        angle: (angle + Math.PI / 2) / (Math.PI / 180), colour}
-    )
+        angle: angle / (Math.PI / 180),
+        colour
+    })
 
     const transformExplosion = ([x, y]) => ({
         x: x / ratio.WIDTH, 
