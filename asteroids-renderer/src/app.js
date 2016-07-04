@@ -7,7 +7,7 @@ import transformFrame from './transformFrame'
 // console.log('window.fabric', window.fabric);
 
 const serverDimensions = {WIDTH: 4000, HEIGHT: 2250}
-const clientDimensions = {WIDTH: 1920, HEIGHT: 1080}
+const clientDimensions = {WIDTH: 800, HEIGHT: 600}
 
 
 const renderer = new Renderer({...clientDimensions, FRAME_RATE: 24})
@@ -23,3 +23,23 @@ const transformRatio = {
 
 renderer.start()
 server.connect()
+
+// check if HMR is enabled
+if(module.hot) {
+
+    // accept itself
+    module.hot.accept('./Renderer', () => {
+        const nextRenderer = require('./Renderer').default
+        const newRenderer = new nextRenderer({...clientDimensions, FRAME_RATE: 24})
+        server.off('frame')
+        server.on('frame', (frame) => newRenderer.update(transformFrame(frame, transformRatio, serverDimensions)))
+        newRenderer.start()
+    })
+
+    // dispose handler
+    module.hot.dispose(function() {
+        // revoke the side effect
+        console.log('dispose')
+        renderer.dispose();
+    });
+}

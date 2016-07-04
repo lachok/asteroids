@@ -5,14 +5,16 @@ import * as utils from './utils'
 
 export default class Bullet {
     constructor({id, x, y}, canvas) {
-        var bullet = new fabric.Line([-2, -2, 2, 2], {
+        var bullet = new fabric.Circle({
             left: x,
             top: y,
+            radius: 2,
+            strokeWidth: 1,
             fill: 'transparent',
             stroke: 'white',
             selectable: false,
-            originX: 'left',
-            originY: 'top'
+            originX: 'center',
+            originY: 'center'
         })
         
         canvas.add(bullet)

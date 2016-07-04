@@ -30,6 +30,10 @@ export default class Server {
         this.subscribers[eventName].push(callback);
     }
     
+    off(eventName) {
+        delete this.subscribers[eventName]
+    }
+    
     disconnect() {
         this.websocket.close()
     }

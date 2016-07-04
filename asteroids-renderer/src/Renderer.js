@@ -104,4 +104,8 @@ export default class Renderer {
 
         step()
     }
+    
+    dispose() {
+        this.canvas.dispose()
+    }
 }
