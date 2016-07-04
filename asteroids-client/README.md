@@ -14,6 +14,9 @@ Implementation Ideas
 --------------------
 Not a lot can be done in 1 hour, but here are some ideas:
  - do not shoot others until they shoot at you
+ - don't shoot your teammates
+ - don't shoot an oponent if your teammate is between you and them
+ - an asteroid will hit you if its [bearing](https://en.wikipedia.org/wiki/Bearing_(navigation)) (angle to you) does not shift significantly over successive frames
  - shoot the nearest asteroid
  - shoot the farthest asteroid
  - shoot the nearest ship
