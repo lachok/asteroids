@@ -42,8 +42,7 @@ t	float	angle theta clockwise from x-axis in radians (0.. 2π)
 col	string	color - six char hex code (e.g. FFFFFF for white)
 ```
 
-Bullet Definition		Design is determined by GUI. Should be point-like
-(not implemented)
+Bullet Definition
 ```					
 id	integer	
 x	float	metres from bottom left
