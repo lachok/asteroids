@@ -14,7 +14,7 @@ Frame Protocol
 -----------------------------
 The server state is received as a `frame` event. The sample client applies a transformation function (`transformFrame`) which can be improved.
 
-Frame protocol:
+Server frame protocol:
 ```
  kby : String : Name of ship that last killed you
  rocks : Array : List of nearby rocks
@@ -37,6 +37,24 @@ var sampleFrame = {
     "theta":0
 }
 ```
+
+Client message protocol:
+```
+ theta : Float : New client direction in radians (0..2PI) - bug - must be floar so add 0.001 to everything! e.g. 1.0 + 0.001 => 1.0001
+ fire : Boolean : Whether the client is firing a bullet
+```
+
+Sample client messages:
+```
+{ "theta": 1.01, "fire": true }
+```
+```
+{ "fire": true }
+```
+```
+{ "theta": 1.01 }
+```
+
 
 Implementation Ideas
 --------------------
