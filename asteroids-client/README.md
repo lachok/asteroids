@@ -32,44 +32,15 @@ Implement your client in `./src/app.js`. The server state is received as a `fram
 
 Supported Game State Protocol
 -----------------------------
+Each server frame will look like
 ```
-{
-  a:   [    [ id, x, y, r], ... ]           // List of asteroids
-  s:   [    [ id, x, y, r, t, col], ... ]   // List of ships
-  b:   [    [ id, x, y], ... ]              // List of bullets
-  x:   [    [x, y], ... ]                   // List of explosions (only occur once)
-  n:   integer                              // Incrementing frame number
-  dim: [x, y]                               // The size of the play area (currently 4000.0 x 2250.0)
-  hi:  [  [tag, score]  ]                   // Individual high score
-  t:   [  [team, score]  ]                  // Team high score
+var sampleFrame = {
+    "rocks":[[375,2.80318484,30,871.4],[382,3.42608659,30,1623.2],[384,5.28487096,15,1517.2],[385,4.71548563,15,904.2],[403,5.44098398,30,348.7],[404,6.26705367,30,1611.8],[405,4.53969654,15,418.4],[406,5.4882665,15,1871.7],[408,0.42939734,15,788.8],[409,3.47910334,15,575.9]],
+    "ships":[["WBH",5.0262324,1211.8]],
+    "status":200,
+    "tag":"LAK",
+    "theta":0,
+    "s":[],
+    "x":[]
 }
 ```
-				
-Asteroid Definition
-```					
-id	integer 	id of rock, autoincrementing, never reused
-x	float	metres from bottom left
-y	float	metres from bottom left
-r	float	radius in metres
-```					
-Ship Definition
-```					
-tag	String	3 unicode chars. unique
-x	float	metres from bottom left
-y	float	metres from bottom left
-r	float	radius in metres
-t	float	angle theta clockwise from x-axis in radians (0.. 2π)
-col	string	color - six char hex code (e.g. FFFFFF for white)
-```
-
-Bullet Definition
-```					
-id	integer	
-x	float	metres from bottom left
-y	float	metres from bottom left
-```					
-eXplosion Definition
-```					
-x	float	metres from bottom left
-y	float	metres from bottom left
-```					

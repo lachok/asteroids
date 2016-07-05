@@ -30,8 +30,8 @@ export default class AsteroidsClient {
         this.subscribers[eventName].push(callback);
     }
 
-    send() {
-        //this.websocket.send()
+    send(response) {
+        this.websocket.send(JSON.stringify(response))
     }
     
     disconnect() {
