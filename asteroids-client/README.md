@@ -18,9 +18,9 @@ Frame protocol:
 ```
  kby : String : Name of ship that last killed you
  rocks : Array : List of nearby rocks
- rock : Array : Rock details in the form [id, bearing, size, distance]
+  rock : Array : Rock details in the form [id, bearing, size, distance]
  ships : Array : List of nearby ships
- ship : Array : Ship details in the form [name, bearing, distance]
+  ship : Array : Ship details in the form [name, bearing, distance]
  status : Number : Server status
  tag : String : 3-letter client identifier
  theta : Number : Current client direction in radians (0..2PI)
