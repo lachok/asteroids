@@ -62,4 +62,6 @@ client.on('frame', (frame) => {
     }
 })
 
-client.connect('ws://ec2-52-58-193-54.eu-central-1.compute.amazonaws.com/ship/' + MY_TAG)
+
+//ws://ec2-52-58-193-54.eu-central-1.compute.amazonaws.com
+client.connect('ws://ec2-52-28-1-127.eu-central-1.compute.amazonaws.com/ship/' + MY_TAG)
