@@ -13,7 +13,7 @@ export default function transformFrame(frame, ratio, serverDimmensions) {
         x: x / ratio.WIDTH, 
         y: (serverDimmensions.HEIGHT - y) / ratio.HEIGHT, 
         r: r / ratio.WIDTH,
-        angle: angle / (Math.PI / 180),
+        angle: 360 - angle * (180 / Math.PI) + 90, // server measures angles conuterclockwise starting from 12 o'clock
         colour
     })
 

@@ -31,4 +31,4 @@ window.onfocus = () => {
 }
 
 renderer.start()
-server.connect()
+server.connect('ws://ec2-52-58-193-54.eu-central-1.compute.amazonaws.com/websocket')
