@@ -10,6 +10,8 @@ var sampleFrame = {
     "x":[]
 }
 
+const MY_TAG = 'XXX'
+
 const transformRock = (rock) => {
     return {id: rock[0], theta: rock[1], radius: rock[2], dist: rock[3]}
 }
@@ -60,4 +62,4 @@ client.on('frame', (frame) => {
     }
 })
 
-client.connect('ws://ec2-52-58-193-54.eu-central-1.compute.amazonaws.com/ship/LAK')
+client.connect('ws://ec2-52-58-193-54.eu-central-1.compute.amazonaws.com/ship/' + MY_TAG)
