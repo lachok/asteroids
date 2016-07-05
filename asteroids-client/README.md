@@ -10,6 +10,10 @@ npm install
 npm start
 ```
 
+Server
+------
+Wbesocket endpoint: `ws://ec2-52-58-193-54.eu-central-1.compute.amazonaws.com/ship/[A-Z]{3}`
+
 Frame Protocol
 -----------------------------
 The server state is received as a `frame` event. The sample client applies a transformation function (`transformFrame`) which can be improved.
