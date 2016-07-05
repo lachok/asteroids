@@ -38,13 +38,14 @@ const client = new AsteroidsClient()
 client.on('frame', (frame) => {
     const serverState = transformFrame(frame)
 
-    // TODO
-    // console.log(frame)
-    // console.log(serverState)
+    //console.log(frame)
+    //console.log(serverState)
     //console.log(serverState.theta)
 
+    // TODO
     let targetShip = serverState.ships[0]
     let targetRock = serverState.rocks[0]
+
 
     if(targetShip) { //shoot the nearest ship
         client.send({theta: targetShip.theta})
@@ -53,16 +54,10 @@ client.on('frame', (frame) => {
         client.send({theta: targetRock.theta})
         client.send({fire: true})
     } else { // turn and shoot
-        let theta = serverState.theta || Math.PI // when theta is 0 set it to PI
-        client.send({theta: theta + 0.05})
+        let theta = (serverState.theta + 0.5 + 0.01) % (2 * Math.PI)
+        client.send({theta: theta})
         client.send({fire: true})
     }
-
-
-    // tag, theta = target          
-    // puts [tag, theta, frame['theta']].inspect
-    // ws.send({'theta'=>theta}.to_json)
-    // ws.send({:fire=>true}.to_json) if pointing_at(theta, frame['theta'])
 })
 
 client.connect('ws://ec2-52-58-193-54.eu-central-1.compute.amazonaws.com/ship/LAK')
