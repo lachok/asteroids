@@ -23,6 +23,11 @@ module.exports = {
                 loaders: ['babel'],
                 include: PATHS.src,
                 exclude: /(node_modules|bower_components)/
+            },
+            {
+                test: /\.less$/,
+                loaders: ['style', 'css', 'less'],
+                include: PATHS.app
             }
         ]
     },
