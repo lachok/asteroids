@@ -19,11 +19,11 @@ scoreClient.connect('ws://ec2-52-28-1-127.eu-central-1.compute.amazonaws.com/new
 const teams = [
     {
         name: 'Team 1',
-        players: ['XXX', 'ABC'] 
+        players: ['XYZ', 'ABC'] 
     },
     {
         name: 'Team 2',
-        players: [] 
+        players: ['OTH'] 
     }
 ]
 
@@ -48,11 +48,21 @@ scoreClient.on('frame', (frame) => {
         let [, hitByAsteroidMatch] = hitByAsteroidRegex.exec(frame) || []
         let [, killedByMatch, killedMatch] = killedRegex.exec(frame) || []
         
-        store.dispatch(updateScore(firesMatch, 'fired'))
-        store.dispatch(updateScore(shotAsteroidMatch, 'shotAsteroid'))
-        store.dispatch(updateScore(hitByAsteroidMatch, 'hitByAsteroid'))
-        store.dispatch(updateScore(killedMatch, 'died'))
-        store.dispatch(updateScore(killedByMatch, 'killed' + areFriends(killedMatch, killedByMatch, teams) ? 'Friend' : 'Enemy'))
+        if(firesMatch) {
+            store.dispatch(updateScore(firesMatch, 'fired'))
+        }
+        if(shotAsteroidMatch) {
+            store.dispatch(updateScore(shotAsteroidMatch, 'shotAsteroid'))
+        }
+        if(hitByAsteroidMatch) {
+            store.dispatch(updateScore(hitByAsteroidMatch, 'hitByAsteroid'))
+        }
+        if(killedMatch) {
+            store.dispatch(updateScore(killedMatch, 'died'))
+        }
+        if(killedByMatch) {
+            store.dispatch(updateScore(killedByMatch, 'killed' + (areFriends(killedMatch, killedByMatch, teams) ? 'Friend' : 'Enemy')))
+        }
     }
 })
 
