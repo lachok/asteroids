@@ -153,29 +153,6 @@ export class ScoreBoard extends React.Component {
 
 // {"ECU":{"score":25,"fired":86,"Friend":26,"shotAsteroid":5,"hitByAsteroid":1},"OPW":{"score":20,"died":6,"Friend":3,"fired":69,"shotAsteroid":4},"NCH":{"score":10,"died":13,"fired":18,"hitByAsteroid":2,"Friend":3,"shotAsteroid":2},"GTV":{"score":15,"fired":88,"Friend":2,"shotAsteroid":3,"died":2},"UXL":{"score":5,"fired":48,"died":14,"Friend":1,"shotAsteroid":1,"hitByAsteroid":1}}
 
-// <table className="table table-striped">
-//     <tr>
-//         <th>Name</th>
-//         <th>Score</th>
-//         <th>Fired</th>
-//         <th>Friendly kills</th>
-//         <th>Enemy kills</th>
-//         <th>Deaths by bullet</th>
-//         <th>Deaths by rock</th>
-//     </tr>
-//     {this.props.highScore.map((player) => (
-//         <tr key={player.name}>
-//             <td>{player.name}</td>
-//             <td>{player.score}</td>
-//             <td>{player.fired}</td>
-//             <td>{player.killedFriend}</td>
-//             <td>{player.killedEnemy}</td>
-//             <td>{player.died}</td>
-//             <td>{player.hitByAsteroid}</td>
-//         </tr>
-//     ))}
-// </table>
-
 const getAccuracy = (player) => {
     return ((player.killedEnemy || 0) + (player.shotAsteroid || 0)) / (player.fired || 1)
 } 
